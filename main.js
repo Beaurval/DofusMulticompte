@@ -11,7 +11,8 @@ const createWindow = () => {
     height: 200,
     titleBarStyle: 'hidden',
     resizable: false,
-    frame: false
+    frame: false,
+    transparent: true
   })
 
   // et charger l'index.html de l'application.
