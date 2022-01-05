@@ -7,18 +7,18 @@ const path = require('path')
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
+    width: 80,
+    height: 200,
+    titleBarStyle: 'hidden',
+    resizable: false,
+    frame: false
   })
 
   // et charger l'index.html de l'application.
   mainWindow.loadFile('index.html')
 
   // Ouvrir les outils de développement.
-  // mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 }
 
 // Cette méthode sera appelée quand Electron aura fini
@@ -46,16 +46,16 @@ app.on('window-all-closed', () => {
 
 // Toutes les APIs Node.js sont disponibles dans le processus de préchargement.
 // Il a la même sandbox qu'une extension Chrome.
-window.addEventListener('DOMContentLoaded', () => {
-    const replaceText = (selector, text) => {
-      const element = document.getElementById(selector)
-      if (element) element.innerText = text
-    }
+// window.addEventListener('DOMContentLoaded', () => {
+//     const replaceText = (selector, text) => {
+//       const element = document.getElementById(selector)
+//       if (element) element.innerText = text
+//     }
   
-    for (const dependency of ['chrome', 'node', 'electron']) {
-      replaceText(`${dependency}-version`, process.versions[dependency])
-    }
-  })
+//     for (const dependency of ['chrome', 'node', 'electron']) {
+//       replaceText(`${dependency}-version`, process.versions[dependency])
+//     }
+//   })
 
   
 // In this file you can include the rest of your app's specific main process
