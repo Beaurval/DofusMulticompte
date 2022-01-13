@@ -1,3 +1,4 @@
+/*------------- Config de base -----------*/
 * {
   box-sizing: border-box;
 }
@@ -8,12 +9,14 @@ body{
   overflow-x: hidden;
   
 }
+/*------------- Permettre de déplacer la fenêtre avec la barre de titre -----------*/
 #bar-title {
     -webkit-app-region: drag;
     width: 100%;
     background-color: #383839;
     height: 20px;
   }
+/*------------- Apparence de la fenêtre -----------*/
   #main-container{
     background-color: rgba(0, 0, 0, 0.555);
     width: 90%;
@@ -21,6 +24,7 @@ body{
     padding: 7px 7px 0 7px;
     border-radius: 0 0 5px 5px;
   }
+/*------------- Apparence des bouttons personnages -----------*/
   #characters-container{
     display: flex;
     flex-direction: column;
@@ -40,13 +44,11 @@ body{
     padding: 0;
     margin: 0;
     overflow: hidden;
-    /* display: inline-block;
-    vertical-align: top;
-    padding-right: 10px; */
-    /* background-image: url('/ressources/Feca.png');
-    background-size: contain; */
+    background: radial-gradient(darkgrey 20%, #383839 80%);
+    user-select: none; /* Propriété standard */
   }
   .character button img{
     width: 50;
     height: 50;
+    user-select: none; /* Propriété standard */
   }
