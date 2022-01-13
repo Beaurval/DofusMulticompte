@@ -1,9 +1,8 @@
 // main.js
 
 // Modules to control application life and create native browser window
-const { app,window, BrowserWindow, screen } = require('electron')
+const { app, BrowserWindow } = require('electron')
 const path = require('path')
-
 
 const createWindow = (height) => {
   // Create the browser window.
@@ -12,11 +11,13 @@ const createWindow = (height) => {
     titleBarStyle: 'hidden',
     resizable: false,
     frame: false,
-    transparent: true
+    transparent: true,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
   })
-
   // et charger l'index.html de l'application.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('./app/index.html')
 
   // Ouvrir les outils de développement.
   //mainWindow.webContents.openDevTools()
@@ -44,20 +45,6 @@ app.on('window-all-closed', () => {
 
 
 // preload.js
-
-// Toutes les APIs Node.js sont disponibles dans le processus de préchargement.
-// Il a la même sandbox qu'une extension Chrome.
-// window.addEventListener('DOMContentLoaded', () => {
-//     const replaceText = (selector, text) => {
-//       const element = document.getElementById(selector)
-//       if (element) element.innerText = text
-//     }
-  
-//     for (const dependency of ['chrome', 'node', 'electron']) {
-//       replaceText(`${dependency}-version`, process.versions[dependency])
-//     }
-//   })
-
   
 // In this file you can include the rest of your app's specific main process
 // code. Vous pouvez également le mettre dans des fichiers séparés et les inclure ici.
