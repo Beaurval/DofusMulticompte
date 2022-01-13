@@ -1,9 +1,12 @@
-body{
+* {
   box-sizing: border-box;
+}
+body{
   margin: 0;
   padding: 0;
   background-color: transparent;
-  overflow: hidden;
+  overflow-x: hidden;
+  
 }
 #bar-title {
     -webkit-app-region: drag;
@@ -13,7 +16,37 @@ body{
   }
   #main-container{
     background-color: rgba(0, 0, 0, 0.555);
-    height: 100px;
     width: 90%;
     margin: auto;
+    padding: 7px 7px 0 7px;
+    border-radius: 0 0 5px 5px;
+  }
+  #characters-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid black;
+    background-color: rgba(24, 24, 24, 0.555);
+  }
+  .character{
+    height: 50px;
+    border: 1px solid white;
+    margin-bottom: 5px;
+    
+  }
+  .character button{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    /* display: inline-block;
+    vertical-align: top;
+    padding-right: 10px; */
+    /* background-image: url('/ressources/Feca.png');
+    background-size: contain; */
+  }
+  .character button img{
+    width: 50;
+    height: 50;
   }
