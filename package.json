@@ -1,8 +1,11 @@
 {
+  "dependencies": {
+    "electron": "^16.0.7",
+    "ffi-napi": "^4.0.3"
+  },
   "name": "multidofus",
   "version": "1.0.0",
-  "description": "Outil visant à aider les joueurs multicompte de Dofus.",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron ."
   },
@@ -10,14 +13,11 @@
     "type": "git",
     "url": "git+https://github.com/Beaurval/DofusMulticompte.git"
   },
-  "author": "Valentin Beaury",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Beaurval/DofusMulticompte/issues"
   },
   "homepage": "https://github.com/Beaurval/DofusMulticompte#readme",
-  "devDependencies": {
-    "electron": "^16.0.6"
-  }
-
+  "description": ""
 }

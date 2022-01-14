@@ -1,0 +1,54 @@
+/*------------- Config de base -----------*/
+* {
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  overflow-x: hidden;
+  
+}
+/*------------- Permettre de déplacer la fenêtre avec la barre de titre -----------*/
+#bar-title {
+    -webkit-app-region: drag;
+    width: 100%;
+    background-color: #383839;
+    height: 20px;
+  }
+/*------------- Apparence de la fenêtre -----------*/
+  #main-container{
+    background-color: rgba(0, 0, 0, 0.555);
+    width: 90%;
+    margin: auto;
+    padding: 7px 7px 0 7px;
+    border-radius: 0 0 5px 5px;
+  }
+/*------------- Apparence des bouttons personnages -----------*/
+  #characters-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid black;
+    background-color: rgba(24, 24, 24, 0.555);
+  }
+  .character{
+    height: 50px;
+    border: 1px solid white;
+    margin-bottom: 5px;
+    
+  }
+  .character button{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background: radial-gradient(darkgrey 20%, #383839 80%);
+    user-select: none; /* Propriété standard */
+  }
+  .character button img{
+    width: 50;
+    height: 50;
+    user-select: none; /* Propriété standard */
+  }
