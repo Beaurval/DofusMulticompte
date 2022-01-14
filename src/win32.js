@@ -40,7 +40,8 @@ windowProc = ffi.Callback('bool', ['long', 'int32'], function (hwnd, lParam) {
   ret = user32.GetWindowTextA(hwnd, buf, 255);
   name = ref.readCString(buf, 0);
   if (name.match(regex)) {
-    succesMatches.push(hwnd);
+    var title = name.replace(/ - Dofus [0-9].*/gi, '');
+    succesMatches.push({title,hwnd});
   }
   return true;
 });
