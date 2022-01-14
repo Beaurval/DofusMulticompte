@@ -3,6 +3,7 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
+const win32 = require('./win32')
 
 const createWindow = (height) => {
   // Create the browser window.
@@ -13,14 +14,15 @@ const createWindow = (height) => {
     frame: false,
     transparent: true,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+      contextIsolation: false
     }
   })
   // et charger l'index.html de l'application.
   mainWindow.loadFile('./app/index.html')
 
-  // Ouvrir les outils de développement.
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools({mode: 'detach'})
 }
 
 // Cette méthode sera appelée quand Electron aura fini
@@ -44,7 +46,11 @@ app.on('window-all-closed', () => {
 })
 
 
-// preload.js
-  
-// In this file you can include the rest of your app's specific main process
-// code. Vous pouvez également le mettre dans des fichiers séparés et les inclure ici.
+// In some file from the main process
+// like main.js
+const {ipcMain} = require('electron');
+
+// Attach listener in the main process with the given ID
+ipcMain.on('request-mainprocess-action', (event, arg) => {
+    win32.enumDofusWindows();
+});

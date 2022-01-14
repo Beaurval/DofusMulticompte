@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const element = document.getElementById(selector)
         if (element) element.innerText = text
     }
-    console.log("gvuk")
+
     for (const dependency of ['chrome', 'node', 'electron']) {
         replaceText(`${dependency}-version`, process.versions[dependency])
     }
