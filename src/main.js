@@ -20,9 +20,9 @@ const createWindow = () => {
       contextIsolation: false
     }
   })
+  mainWindow.setAlwaysOnTop(true)
   // et charger l'index.html de l'application.
   mainWindow.loadFile('./app/index.html')
-
   mainWindow.webContents.openDevTools({ mode: 'detach' })
 }
 
