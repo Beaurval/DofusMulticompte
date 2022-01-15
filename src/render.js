@@ -1,5 +1,17 @@
 const { ipcRenderer } = require('electron');
 
+function character_button_clicked(button,windowId){
+    ipcRenderer.send('set-window-to-top', windowId);
+    var buttons = document.getElementsByClassName('character-button');
+    for(var i = 0; i < buttons.length; i++){
+        buttons[i].parentNode.setAttribute('class','character');
+    }
+
+    var container = button.parentNode;
+    container.setAttribute('class','character character-selected');
+}
+
+
 // Send information to the main process
 // if a listener has been set, then the main process
 // will react to the request !
@@ -15,6 +27,7 @@ ipcRenderer.on('dofus-windows-found', (event, dofusWindowsList) => {
 
         var button = document.createElement('button');
         button.setAttribute('class', 'character-button');
+        button.setAttribute('type', 'button');
         button.setAttribute('data-window-id', dofusWindowsList[i].hwnd);
         button.setAttribute('data-window-title', dofusWindowsList[i].title);
 
@@ -28,12 +41,12 @@ ipcRenderer.on('dofus-windows-found', (event, dofusWindowsList) => {
         characterList.appendChild(character);
     }
 
+    /* ------------------- Bind Click ------------------------ */
     let buttons = document.getElementsByClassName('character-button');
     for (var i = 0; i < buttons.length; i++) {
         let windowId = buttons[i].getAttribute('data-window-id');
-        buttons[i].addEventListener('click', () => {
-            console.log(this);
-            ipcRenderer.send('set-window-to-top', windowId);
+        buttons[i].addEventListener('click', (event) => {
+            character_button_clicked(event.target.closest('.character-button'),windowId);
         });
     }
 });
