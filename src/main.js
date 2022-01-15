@@ -23,7 +23,7 @@ const createWindow = () => {
   // et charger l'index.html de l'application.
   mainWindow.loadFile('./app/index.html')
 
-  mainWindow.webContents.openDevTools({mode: 'detach'})
+  mainWindow.webContents.openDevTools({ mode: 'detach' })
 }
 
 // Cette méthode sera appelée quand Electron aura fini
@@ -50,15 +50,16 @@ app.on('window-all-closed', () => {
 
 // In some file from the main process
 // like main.js
-const {ipcMain} = require('electron');
+const { ipcMain } = require('electron');
 const { emit } = require('process')
 
 // Attach listener in the main process with the given ID
 ipcMain.on('request-mainprocess-action', (event, arg) => {
-    let dofusWindows = win32.enumDofusWindows();
+  let dofusWindows = win32.enumDofusWindows();
 
-    mainWindow.webContents.send('dofus-windows-found',dofusWindows);
-
-    //win32.selectDofusWindow(dofusWindows[1]);
+  mainWindow.webContents.send('dofus-windows-found', dofusWindows);
 });
 
+ipcMain.on('set-window-to-top', (event, windowId) => {
+  win32.selectDofusWindow(windowId);
+});

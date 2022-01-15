@@ -7,19 +7,11 @@ var stringPtr = ref.refType(ref.types.CString);
 //importation de la librairie user32
 var user32 = ffi.Library('user32.dll', {
   'EnumWindows': ['bool', [voidPtr, 'int32']],
-  'GetTopWindow': ['long', ['long']],
-  'FindWindowA': ['long', ['string', 'string']],
-  'SetActiveWindow': ['long', ['long']],
-  'SetForegroundWindow': ['bool', ['long']],
-  'BringWindowToTop': ['bool', ['long']],
   'ShowWindow': ['bool', ['long', 'int']],
-  'SwitchToThisWindow': ['void', ['long', 'bool']],
-  'GetForegroundWindow': ['long', []],
-  'AttachThreadInput': ['bool', ['int', 'long', 'bool']],
-  'GetWindowThreadProcessId': ['int', ['long', 'int']],
-  'SetWindowPos': ['bool', ['long', 'long', 'int', 'int', 'int', 'int', 'uint']],
-  'SetFocus': ['long', ['long']],
+
   'GetWindowTextA': ['long', ['long', stringPtr, 'long']],
+  'IsIconic': ['bool', ['long']],
+  'SetForegroundWindow': ['bool',['long']]
 });
 
 var kernel32 = new ffi.Library('Kernel32.dll', {
@@ -59,19 +51,11 @@ function enumDofusWindows() {
 
 //Place la fenêtre souhaitée (selon l'id de fenêtre renseigné) au plus haut de la pile
 function selectDofusWindow(winToSetOnTop) {
-  //On utilise plusieures fonctions user32 afin d'être sûr que dans 100% des cas la fenêtre soit en haut de la pile
-  var foregroundHWnd = user32.GetForegroundWindow()
-  var currentThreadId = kernel32.GetCurrentThreadId()
-  var windowThreadProcessId = user32.GetWindowThreadProcessId(foregroundHWnd, null)
-
-  user32.ShowWindow(winToSetOnTop, 9)
-  user32.SetWindowPos(winToSetOnTop, -1, 0, 0, 0, 0, 3)
-  user32.SetWindowPos(winToSetOnTop, -2, 0, 0, 0, 0, 3)
-  user32.SetForegroundWindow(winToSetOnTop)
-  user32.AttachThreadInput(windowThreadProcessId, currentThreadId, 0)
-  user32.SetFocus(winToSetOnTop)
-
-  user32.SetActiveWindow(winToSetOnTop);
+  if(user32.IsIconic(winToSetOnTop))
+  {
+    user32.ShowWindow(winToSetOnTop,3);
+  }
+  var truc = user32.SetForegroundWindow(winToSetOnTop);
 }
 
 exports.enumDofusWindows = enumDofusWindows;
