@@ -33,7 +33,7 @@ ipcRenderer.on('dofus-windows-found', (event, dofusWindowsList) => {
 
         var img = document.createElement('img');
         img.setAttribute('draggable', 'false');
-        img.setAttribute('src', '../ressources/Feca-min.png');
+        img.setAttribute('src', '../../ressources/Feca-min.png');
 
         button.appendChild(img);
         character.appendChild(button);

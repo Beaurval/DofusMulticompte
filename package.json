@@ -5,7 +5,7 @@
   },
   "name": "multidofus",
   "version": "1.0.0",
-  "main": "src/main.js",
+  "main": "app/switcher/index.js",
   "scripts": {
     "start": "electron ."
   },
